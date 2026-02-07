@@ -22,12 +22,15 @@ inspect_*.js
 read_dump.js
 verify_*.js
 view_db_data.js
-cleanup_and_start.js
-clear_test_cart.js
-auto_fix_corrupted_users.js
-delete_user_by_email.js
+cleanup_*.js
+clear_*.js
+auto_fix_*.js
+delete_*.js
 reset_user_password.js
-
-# Build
-dist/
-build/
+compare_tables*.js
+seed*.js
+table_status_*.txt
+table_comparison.txt
+*.json
+!package.json
+!package-lock.json
