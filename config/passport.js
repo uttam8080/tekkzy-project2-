@@ -22,10 +22,11 @@ passport.deserializeUser(async (email, done) => {
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID || 'dummy_client_id',
     clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'dummy_client_secret',
-    callbackURL: "http://localhost:8000/api/auth/google/callback",
+    callbackURL: `${process.env.BACKEND_URL || 'http://localhost:8000'}/api/auth/google/callback`,
     passReqToCallback: true
 }, async (req, accessToken, refreshToken, profile, done) => {
-    console.log("🔹 Google Strategy Initialized with Callback URL: http://localhost:8000/api/auth/google/callback");
+    const callbackUrl = `${process.env.BACKEND_URL || 'http://localhost:8000'}/api/auth/google/callback`;
+    console.log(`🔹 Google Strategy Initialized with Callback URL: ${callbackUrl}`);
     try {
         const email = profile.emails && profile.emails[0] ? profile.emails[0].value : null;
 
@@ -66,7 +67,7 @@ passport.use(new GoogleStrategy({
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID || 'dummy_app_id',
     clientSecret: process.env.FACEBOOK_APP_SECRET || 'dummy_app_secret',
-    callbackURL: "http://localhost:8000/api/auth/facebook/callback",
+    callbackURL: `${process.env.BACKEND_URL || 'http://localhost:8000'}/api/auth/facebook/callback`,
     profileFields: ['id', 'emails', 'name']
 }, async (accessToken, refreshToken, profile, done) => {
     try {
