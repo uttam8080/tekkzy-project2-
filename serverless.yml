@@ -1,0 +1,31 @@
+service: food-delivery-website
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  stage: dev
+
+package:
+  individually: true
+  patterns:
+    - '!node_modules/**'
+    - '!test/**'
+    - 'js/**'
+    - 'css/**'
+    - 'images/**'
+    - '*.html'
+
+functions:
+  app:
+    handler: index.handler
+    events:
+      - http:
+          path: /
+          method: any
+      - http:
+          path: /{proxy+}
+          method: any
+
+plugins:
+  - serverless-offline

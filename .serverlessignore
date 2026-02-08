@@ -1,0 +1,12 @@
+# Serverless ignore file
+.serverless/
+.env
+.DS_Store
+node_modules/
+test/
+*.test.js
+package-lock.json
+README.md
+.git/
+.gitignore
+.vscode/
